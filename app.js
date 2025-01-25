@@ -283,9 +283,7 @@ function handleKeyPress(event, tetromino, keydownHandler) {
     const { shape, currentRotation, down } = tetromino;
 
     if (event.key === "w" || event.key === "ArrowUp" && !keepShape) {
-        hitOther = shape[currentRotation].some(idx => grid[idx+down-1].classList.contains("locked"));
-
-        if (hitOther) {
+        if (shape[currentRotation].some(idx => grid[idx+down-1].classList.contains("locked")) || shape[currentRotation].some(idx => grid[idx+down+1].classList.contains("locked"))) {
             draw(tetromino, keydownHandler);
             return;
         }
